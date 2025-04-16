@@ -1,26 +1,15 @@
 package poo.banco;
 
 public class PessoaFisica extends Cliente {
-
     private String cpf;
 
-    public PessoaFisica(String name, String cpf) {
-        super(name);
+    public PessoaFisica(String nome, String cpf) {
+        super(nome);
         this.cpf = cpf;
-    }
-
-    public PessoaFisica(String id, String name, String cpf) {
-        super(id, name);
-        this.cpf = cpf;
-    }
-
-    public String getCpf() {
-        return cpf;
     }
 
     @Override
-    public String toString() {
-        return super.toString() + " (" + cpf + ")";
+    public String getIdentificacao() {
+        return cpf;
     }
-
 }
