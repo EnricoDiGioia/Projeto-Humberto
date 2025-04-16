@@ -1,29 +1,33 @@
+
 package poo.banco;
 
-public class ContaInvestimento extends Conta implements Rendimento {
+public class ContaInvestimento extends Conta {
 
-    private double taxa = 0.02;
-
-    public ContaInvestimento(Cliente cliente) {
-        super(cliente);
+    public ContaInvestimento(String numero, Cliente titular) {
+        super(numero, titular);
     }
 
     @Override
     public void sacar(double valor) {
-        if (valor > saldo) {
-            throw new BancoException("S01", "Saldo insuficiente");
+        if (valor > 0 && valor <= saldo) {
+            saldo -= valor;
+            System.out.println("Saque realizado com sucesso");
         }
-        saldo -= valor;
     }
 
     @Override
-    public void render() {
-        this.saldo *= 1 + taxa;
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldo += valor;
+        }
+    }
+
+    public void aplicarRendimento() {
+        saldo += saldo * 0.005; // 0.5% de rendimento
     }
 
     @Override
-    public void setTaxa(double taxa) {
-        this.taxa = taxa;
+    public String toString() {
+        return "Conta Investimento " + getNumero() + " - " + getTitular().getNome();
     }
-    
 }
